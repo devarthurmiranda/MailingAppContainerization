@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  nodeapi:
+    build: .
+    container_name: nodeapi
+    command: npm start
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017/nodeapi
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
